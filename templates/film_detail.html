@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ film_detail.title }}</title>
+</head>
+<style>
+    .btn-back{
+        color: blue;
+        border: 20px rgba(255, 255, 255, .4);
+        font-size: 60px;
+        font-weight: 300;
+        font-family: 'Segoe UI Black', fantasy;
+        background: #d4fc79;
+        margin-bottom: 0;
+    }
+    .btn-back:hover{
+        background: #96e6a1;
+    }
+</style>
+<body style='background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%)'>
+<a href="/films/">
+    <button class="btn-back">Go Back</button>
+</a>
+<h1 style='font-family: "Segoe UI Black",fantasy; font-size: 100px; text-align: center'>Название: {{ film_detail.title }}</h1>
+<p style="font-family: 'Segoe UI Black',fantasy; font-size: 70px; text-align: center">Режиссер: {{ film_detail.producer }}</p>
+<p style="font-family: 'Segoe UI Black',fantasy; font-size: 70px; text-align: center">Рейтинг: {{ film_detail.rating }}</p>
+<p style="font-family: 'Segoe UI Black',fantasy; font-size: 70px; text-align: center">Длительность: {{ film_detail.duration }}</p>
+</body>
+</html>

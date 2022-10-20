@@ -21,5 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_view),
     path('about_us/', views.about_us_view),
-    path('date_now/', views.date_now_view)
+    path('date_now/', views.date_now_view),
+    path('films/', views.films_view),
+    path('films/<int:id>/', views.films_detail_view)
 ]

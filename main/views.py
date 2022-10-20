@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from datetime import datetime
-
+from .models import Film
 
 # Create your views here.
 def index_view(request):
@@ -22,3 +22,18 @@ def date_now_view(request):
     }
 
     return render(request, 'date_now.html', context=context)
+
+
+def films_view(request):
+    context = {
+        'film_list': Film.objects.all()
+    }
+
+    return render(request, 'films.html', context=context)
+
+
+def films_detail_view(request, id):
+    context = {
+        'film_detail': Film.objects.get(id=id)
+    }
+    return render(request, 'film_detail.html', context=context)
