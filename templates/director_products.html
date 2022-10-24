@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>All Films</title>
+    <title>Document</title>
 </head>
 <body>
 <a href="/films/">
@@ -16,14 +16,14 @@
         <button>{{ director.name }}</button>
     </a>
 {% endfor %}
-<h1>All Films</h1>
-{% for film in film_list %}
-    <a href="/films/{{ film.id }}/"> {{ film.title }}</a>
-    <h2>Режиссер: {{ film.producer }}</h2>
-    <h2>Рейтинг: {{ film.rating }}</h2>
-    <h2>Длительность: {{ film.duration }}</h2>
+<h1>{{ director.name }}</h1>
+{% for film in director.film_list_on_director.all %}
+    <a href="/films/{{ film.id }}/">
+    <h3>Title: {{ film.title }}</h3>
+    </a>
+    <p>Duration: {{ film.duration }}</p>
+    <p>Rating: {{ film.rating }}</p>
     <hr>
 {% endfor %}
-
 </body>
 </html>

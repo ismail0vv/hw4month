@@ -23,5 +23,6 @@ urlpatterns = [
     path('about_us/', views.about_us_view),
     path('date_now/', views.date_now_view),
     path('films/', views.films_view),
-    path('films/<int:id>/', views.films_detail_view)
+    path('films/<int:id>/', views.films_detail_view),
+    path('director/<int:director_id>/films/', views.director_films_view)
 ]
