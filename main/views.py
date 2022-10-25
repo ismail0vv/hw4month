@@ -36,7 +36,8 @@ def films_view(request):
 
 def films_detail_view(request, id):
     context = {
-        'film_detail': Film.objects.get(id=id)
+        'film_detail': Film.objects.get(id=id),
+        'directors': Director.objects.all(),
     }
     return render(request, 'film_detail.html', context=context)
 

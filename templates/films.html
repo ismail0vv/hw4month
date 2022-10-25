@@ -1,29 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>All Films</title>
-</head>
-<body>
-<a href="/films/">
-    <button>All</button>
-</a>
-{% for director in directors %}
-    <a href="/director/{{ director.id }}/films/">
-        <button>{{ director.name }}</button>
-    </a>
-{% endfor %}
-<h1>All Films</h1>
-{% for film in film_list %}
-    <a href="/films/{{ film.id }}/"> {{ film.title }}</a>
-    <h2>Режиссер: {{ film.producer }}</h2>
-    <h2>Рейтинг: {{ film.rating }}</h2>
-    <h2>Длительность: {{ film.duration }}</h2>
-    <hr>
-{% endfor %}
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block content %}
+    <div class="row" style="width: 1300px; margin: 0 auto; padding-top: 10px">
+        {% for film in film_list %}
+            <div class="col-sm-6">
+                <div class="card text-center text-bg-light mb-3" style="width: 40rem;">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ film.title }}</h1>
+                        <h2 class="card-text">Режиссер: {{ film.producer }}<br>Рейтинг: {{ film.rating }}<br>Длительность: {{ film.duration }}
+                        </h2>
+                        <a href="/films/{{ film.id }}/" class="btn btn-primary">{{ film.title }}</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
