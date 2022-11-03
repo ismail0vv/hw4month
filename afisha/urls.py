@@ -24,5 +24,8 @@ urlpatterns = [
     path('date_now/', views.date_now_view),
     path('films/', views.films_view),
     path('films/<int:id>/', views.films_detail_view),
-    path('director/<int:director_id>/films/', views.director_films_view)
+    path('director/<int:director_id>/films/', views.director_films_view),
+    path('films/create/', views.create_film_view),
+    path('director/create/', views.create_director_view),
+    path('register/', views.register_view),
 ]
