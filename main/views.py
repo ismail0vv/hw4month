@@ -1,11 +1,36 @@
 from django.shortcuts import render, Http404, redirect
 from datetime import datetime
 from .models import Film, Director
-from .forms import FilmForm, DirectorForm, UserCreateForm
+from .forms import FilmForm, DirectorForm, UserCreateForm, UserLoginForm
 from django.contrib.auth.models import User
+from django.contrib.auth import login, logout, authenticate
 
 
 # Create your views here.
+def logout_view(request):
+    logout(request)
+    return redirect('/')
+
+
+def login_view(request):
+    context = {
+        'directors': Director.objects.all(),
+        'form': UserLoginForm()
+    }
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(username=username, password=password)
+            if not user:
+                return redirect('/login/')
+            else:
+                login(request, user)
+                return redirect('/')
+    return render(request, 'login.html', context)
+
+
 def register_view(request):
     context = {
         'directors': Director.objects.all(),
@@ -16,7 +41,7 @@ def register_view(request):
         if form.is_valid():
             username = request.POST.get('username')
             password = request.POST.get('password')
-            User.objects.create_user(username, password=password)
+            User.objects.create_user(username=username, password=password)
             return redirect('/login/')
         context['form'] = form
     return render(request, 'register.html', context)

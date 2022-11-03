@@ -23,8 +23,23 @@
                     <a class="nav-link active" aria-current="page" href="/films/">All Films</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/films/create">Create Film</a>
+                    <a class="nav-link active" aria-current="page" href="/films/create/">Create Film</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/director/create/">Create Director</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/register/">Sign Up</a>
+                </li>
+            {% if user.is_anonymous %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/login/">Sign In</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/logout/">Sign Out {{ user.username }}</a>
+                </li>
+            {% endif %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">

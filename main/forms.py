@@ -40,9 +40,9 @@ class DirectorForm(forms.ModelForm):
 
 
 class UserCreateForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField()
-    password1 = forms.CharField()
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -50,9 +50,14 @@ class UserCreateForm(forms.Form):
             raise ValidationError('User with this username already exists')
         return username
 
-    def clean_password(self):
+    def clean_password1(self):
         password = self.cleaned_data['password']
         password1 = self.cleaned_data['password1']
         if password != password1:
             raise ValidationError('Passwords does not match')
-        return password
+        return password1
+
+
+class UserLoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
