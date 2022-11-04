@@ -31,15 +31,15 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/register/">Sign Up</a>
                 </li>
-            {% if user.is_anonymous %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/login/">Sign In</a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/logout/">Sign Out {{ user.username }}</a>
-                </li>
-            {% endif %}
+                {% if user.is_anonymous %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/login/">Sign In</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/logout/">Sign Out {{ user.username }}</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
@@ -47,12 +47,17 @@
                     </a>
                     <ul class="dropdown-menu">
                         {% for director in directors %}
-                        <li><a class="dropdown-item" href="/director/{{ director.id }}/films/">{{ director.name }}</a></li>
+                            <li><a class="dropdown-item"
+                                   href="/director/{{ director.id }}/films/">{{ director.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
-
             </ul>
+            <form class="d-flex" role="search" method="get" action="/search/">
+                <input class="form-control me-2" type="search" placeholder="Search" name="search_word"
+                       aria-label="Search" value="{{ search_word }}">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
     </div>
 </nav>

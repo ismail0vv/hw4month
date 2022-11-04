@@ -7,6 +7,18 @@ from django.contrib.auth import login, logout, authenticate
 
 
 # Create your views here.
+def search_view(request):
+    search_word = request.GET.get('search_word', '')
+    print(search_word)
+    context = {
+        'directors': Director.objects.filter(),
+        'films': Film.objects.filter(title__icontains=search_word).order_by('duration', 'title'),
+        'search_word': search_word,
+        'results': Film.objects.filter(title__icontains=search_word).count()
+    }
+    return render(request, 'search.html', context)
+
+
 def logout_view(request):
     logout(request)
     return redirect('/')
@@ -97,10 +109,22 @@ def date_now_view(request):
     return render(request, 'date_now.html', context=context)
 
 
+PAGE_SIZE = 3
+
+
 def films_view(request):
+    page = int(request.GET.get('page', 1))
+    all_films = Film.objects.all()
+    page_films = all_films[PAGE_SIZE * (page - 1): PAGE_SIZE * page]
+    pages_amount = (all_films.count() + PAGE_SIZE - 1) // PAGE_SIZE
     context = {
-        'film_list': Film.objects.all(),
+        'film_list': page_films,
         'directors': Director.objects.all(),
+        'buttons': [i for i in range(1, pages_amount + 1)],
+        'page': page,
+        'pages_amount': pages_amount,
+        'prev_page': page-1,
+        'next_page': page+1,
     }
 
     return render(request, 'films.html', context=context)

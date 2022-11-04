@@ -29,5 +29,6 @@ urlpatterns = [
     path('director/create/', create_director_view),
     path('register/', register_view),
     path('login/', login_view),
-    path('logout/', logout_view)
+    path('logout/', logout_view),
+    path('search/', search_view)
 ]
